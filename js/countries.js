@@ -11,10 +11,16 @@ const displayCountries = countries => {
     // }
     const countryDiv = document.getElementById('countries')
     countries.forEach(country => {
-        console.log(country.name.common);
+        console.log(country.capital);
+        const div = document.createElement('div')
+        div.classList.add('country')
         const h3 = document.createElement('h3')
+        const p = document.createElement('p')
         h3.innerText = country.name.common
-        countryDiv.appendChild(h3)
+        p.innerText = country.capital
+        div.appendChild(h3)
+        div.appendChild(p)
+        countryDiv.appendChild(div)
     })
 }
-loadCountries()
+loadCountries() 
