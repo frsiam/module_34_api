@@ -27,19 +27,22 @@ const countryByName = name => {
         .then(data => displayCountryDetails(data[0]))
 }
 const displayCountryDetails = country => {
-    console.log(country.maps.googleMaps)
+    console.log(country.independent)
+    let inde = ''
+    if(country.independent == true){
+        inde = 'Yes'
+    }
+    else{
+        inde = 'No'
+    }
     const detailDiv = document.getElementById('country-detail')
     detailDiv.classList.add('py-3')
     detailDiv.innerHTML = `<h4>Name : ${country.name.common}</h4>
     <h6>Continents: ${country.continents}</h6>
     <p>Population : ${country.population}</p>
-    <p>Language : ${country.languages.cnr}</p>
+    <p>Independent? ${inde}</p>
     <img width="150" src="${country.flags.png}"></br>
     </br>
-    Location: <a href="${country.maps.googleMaps}">Google Map</a>`
+    Location: <a target='_blank' href="${country.maps.googleMaps}">Google Map</a>`
 }
-
-
-
-
 loadCountries() 
