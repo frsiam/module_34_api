@@ -5,22 +5,39 @@ const loadCountries = () => {
 }
 
 const displayCountries = countries => {
-    console.log(countries);
-    // for(const country of countries){
-    //     console.log(country.name.common);
-    // }
+    // console.log(countries);
     const countryDiv = document.getElementById('countries')
     countries.forEach(country => {
-        console.log(country.capital);
+        // console.log(country.capital);
         const div = document.createElement('div')
         div.classList.add('country')
-        const h3 = document.createElement('h3')
-        const p = document.createElement('p')
-        h3.innerText = country.name.common
-        p.innerText = country.capital
-        div.appendChild(h3)
-        div.appendChild(p)
+
+        div.innerHTML = `<h3>Name : ${country.name.common}</h3>
+        <p>Capital : ${country.capital}</p>
+        <button class="btn btn-success" onclick="countryByName('${country.name.common}')">Details</button>`
+
         countryDiv.appendChild(div)
     })
 }
+const countryByName = name => {
+    const url = `https://restcountries.com/v3.1/name/${name}`
+    console.log(url);
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayCountryDetails(data[0]))
+}
+const displayCountryDetails = country => {
+    console.log(country)
+    const detailDiv = document.getElementById('country-detail')
+    detailDiv.classList.add('py-3')
+    detailDiv.innerHTML = `<h4>Name : ${country.name.common}</h4>
+    <h6>Continents: ${country.continents}</h6>
+    <p>Population : ${country.population}</p>
+    <p>Population : ${country.languages.cnr}</p>
+    <img src="${country.flags.png}">`
+}
+
+
+
+
 loadCountries() 
