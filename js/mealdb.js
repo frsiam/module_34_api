@@ -7,5 +7,15 @@ const searchFood = () => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => displaySearchResult(data.meals))
+}
+
+const displaySearchResult = meals => {
+    console.log(meals)
+    const searchResult = document.getElementById('search-result')
+    meals.forEach(meal => {
+        console.log(meal)
+        const div = document.createElement('div')
+        div.classList.add('col')
+    })
 }
