@@ -27,14 +27,16 @@ const countryByName = name => {
         .then(data => displayCountryDetails(data[0]))
 }
 const displayCountryDetails = country => {
-    console.log(country)
+    console.log(country.maps.googleMaps)
     const detailDiv = document.getElementById('country-detail')
     detailDiv.classList.add('py-3')
     detailDiv.innerHTML = `<h4>Name : ${country.name.common}</h4>
     <h6>Continents: ${country.continents}</h6>
     <p>Population : ${country.population}</p>
-    <p>Population : ${country.languages.cnr}</p>
-    <img src="${country.flags.png}">`
+    <p>Language : ${country.languages.cnr}</p>
+    <img width="150" src="${country.flags.png}"></br>
+    </br>
+    Location: <a href="${country.maps.googleMaps}">Google Map</a>`
 }
 
 
